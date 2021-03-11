@@ -11,6 +11,8 @@ interface Request{
 class UpdateUserService {
   async execute({id, email, name}: Request): Promise<void | User> {
     const usersRepository = getRepository(User);
+
+    const findUser = await usersRepository.findOne(id);
   
     const user = await usersRepository.update(id, {
       email,
@@ -18,7 +20,7 @@ class UpdateUserService {
       updated_at: new Date()
     });
 
-    if(!user) {
+    if(!findUser) {
       throw new AppError('You need to be logged in to update the user');
     }
   
@@ -27,7 +29,7 @@ class UpdateUserService {
       return userUpdated
     }
 
-    throw new AppError('User not updated')
+    throw new AppError('Você não está logado.')
 
   }
 }
