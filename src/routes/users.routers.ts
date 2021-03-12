@@ -5,9 +5,9 @@ import auth from '../config/auth';
 import AppError from '../errors/AppError';
 import ensureAuthenticated from '../middlewares/ensureAuthenticated';
 import { User } from '../models/User';
-import CreateUserService from '../services/CreateUserService';
+import CreateUserService from '../services/User/CreateUserService';
 import ChangePasswordService from '../services/Login/ChangePasswordService';
-import UpdateUserService from '../services/UpdateUserService';
+import UpdateUserService from '../services/User/UpdateUserService';
 
 const usersRouter = Router();
 

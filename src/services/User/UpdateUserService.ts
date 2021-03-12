@@ -13,17 +13,17 @@ class UpdateUserService {
     const usersRepository = getRepository(User);
 
     const findUser = await usersRepository.findOne(id);
-  
+
+    if(!findUser) {
+      throw new AppError('You need to be logged in to update the user');
+    }
+
     const user = await usersRepository.update(id, {
       email,
       name,
       updated_at: new Date()
     });
 
-    if(!findUser) {
-      throw new AppError('You need to be logged in to update the user');
-    }
-  
     if(user.affected === 1) {
       const userUpdated = await getRepository(User).findOne(id);
       return userUpdated

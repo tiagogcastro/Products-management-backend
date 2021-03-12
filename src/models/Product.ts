@@ -10,10 +10,10 @@ export class Product {
   name: string;
 
   @Column()
-  quantity: string;
+  quantity: number;
 
   @Column()
-  price: string;
+  price: number;
 
   @Column()
   created_at: Date;
