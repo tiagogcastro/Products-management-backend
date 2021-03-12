@@ -1,9 +1,9 @@
 import { getCustomRepository } from 'typeorm';
-import AppError from '../errors/AppError';
+import AppError from '../../errors/AppError';
 import { hash } from 'bcryptjs';
 
-import { User } from '../models/User';
-import {UsersRepository} from '../repositories/UsersRepository';
+import { User } from '../../models/User';
+import {UsersRepository} from '../../repositories/UsersRepository';
 
 interface Request{
   email: string;
