@@ -26,6 +26,7 @@ class CreateProductService {
     }
 
     const product = productRepository.create({
+      user_id: user.id,
       name,
       quantity,
       price
