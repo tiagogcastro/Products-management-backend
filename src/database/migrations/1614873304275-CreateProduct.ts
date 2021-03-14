@@ -18,6 +18,10 @@ export class CreateProduct1614873304275 implements MigrationInterface {
             type: "varchar",
           },
           {
+            name: "user_id",
+            type: "uuid"
+          },
+          {
             name: "quantity",
             type: "int"
           },
@@ -35,7 +39,17 @@ export class CreateProduct1614873304275 implements MigrationInterface {
             type: "timestamp",
             default: "now()"
           }
-				]
+				],
+        foreignKeys: [
+					{
+						name: "FKuser_id",
+						referencedTableName: "users",
+						referencedColumnNames: ["id"],
+						columnNames: ["user_id"],
+						onDelete: "CASCADE",
+						onUpdate: "CASCADE"
+					},
+        ]
 			})
 		);
 	}
