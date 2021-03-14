@@ -1,4 +1,4 @@
-<h1 align="center"> Título </h1>
+<h1 align="center"> Projeto Crud </h1>
 
 <p align="center">🔍 Navegação dentro do Readme. </p>
 
@@ -27,9 +27,7 @@
 
 </br>
 
-<center>
-  <img src="./images/insomniaImage.png" width="500px" height="500px">
-</center>
+<img src="./images/insomniaImage.png" width="500px" height="500px" align="center">
 
 </br>
 
