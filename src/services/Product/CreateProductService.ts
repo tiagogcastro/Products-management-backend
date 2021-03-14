@@ -10,8 +10,13 @@ interface Request {
   price: number;
 }
 
+interface FormatData {
+  user: User;
+  product: Product;
+}
+
 class CreateProductService {
-  async execute({userId, name, quantity, price}: Request): Promise<Product> {
+  async execute({userId, name, quantity, price}: Request): Promise<FormatData> {
     const productRepository = getRepository(Product);
     const userRepository = getRepository(User);
 
@@ -34,7 +39,10 @@ class CreateProductService {
 
     await productRepository.save(product);
 
-    return product
+    return {
+      user,
+      product,
+    }
   }
 }
 
