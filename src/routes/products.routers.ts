@@ -1,6 +1,4 @@
 import { Router } from 'express';
-import { getRepository } from 'typeorm';
-import { User } from '../models/User';
 import ensureAuthenticated from '../middlewares/ensureAuthenticated';
 import ListAllProductsService from '../services/Product/ListAllProductsService';
 import CreateProductService from '../services/Product/CreateProductService';
@@ -13,31 +11,25 @@ const productsRouter = Router();
 productsRouter.post('/create', ensureAuthenticated, async (request, response) => {
   const userId = request.user.id;
   const {name, quantity, price} = request.body;
-  const user = await getRepository(User).findOne(userId);
 
   const createProductService = new CreateProductService();
 
-  const product = await createProductService.execute({
+  const data = await createProductService.execute({
     userId,
     name, 
     quantity, 
     price
   });
 
-  return response.json({
-    product,
-    user
-  });
+  return response.json({data});
 });
 
 productsRouter.get('/', async (request, response) => {
   const listAllProductsService = new ListAllProductsService();
 
-  const listProducts = await listAllProductsService.execute({});
+  const data = await listAllProductsService.execute({});
   
-  return response.json({
-    listProducts
-  })
+  return response.json({data})
 });
 
 productsRouter.get('/:productId', async (request, response) => {
@@ -45,11 +37,11 @@ productsRouter.get('/:productId', async (request, response) => {
   
   const listOneProductService = new ListOneProductService();
   
-  const listProduct = await listOneProductService.execute({
+  const data = await listOneProductService.execute({
     productId
   });
 
-  return response.json({listProduct});
+  return response.json({data});
 })
 
 
@@ -61,7 +53,7 @@ productsRouter.put('/:productId/edit', ensureAuthenticated, async (request, resp
   const productUpdated = await updateProductService.execute({
     id: productId,
     name,
-    price,
+    price,  
     quantity
   });
 
