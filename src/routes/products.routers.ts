@@ -32,6 +32,15 @@ productsRouter.post('/create', ensureAuthenticated, async (request, response) =>
 
 productsRouter.get('/', async (request, response) => {
   const listAllService = new ListAllService();
+
+  const allProducts = await listAllService.execute({});
+  
+  const ProductsLength = allProducts.length;
+  
+  return response.json({
+    allProducts,
+    ProductsLength
+  })
 });
 
 productsRouter.put('/:productId/edit', ensureAuthenticated, async (request, response) => {
