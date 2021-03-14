@@ -1,12 +1,12 @@
 import { Router } from 'express';
-import ensureAuthenticated from '../middlewares/ensureAuthenticated';
-import ListAllService from '../services/Product/ListAllProductsService';
-import CreateProductService from '../services/Product/CreateProductService';
-import { User } from '../models/User';
 import { getRepository } from 'typeorm';
+import { User } from '../models/User';
+import ensureAuthenticated from '../middlewares/ensureAuthenticated';
+import ListAllProductsService from '../services/Product/ListAllProductsService';
+import CreateProductService from '../services/Product/CreateProductService';
 import UpdateProductService from '../services/Product/UpdateProductService';
-import AppError from '../errors/AppError';
-import { Product } from '../models/Product';
+import DeleteProductService from '../services/Product/DeleteProductService';
+import ListOneProductService from '../services/Product/ListOneProductService';
 
 const productsRouter = Router();
 
@@ -31,17 +31,27 @@ productsRouter.post('/create', ensureAuthenticated, async (request, response) =>
 });
 
 productsRouter.get('/', async (request, response) => {
-  const listAllService = new ListAllService();
+  const listAllProductsService = new ListAllProductsService();
 
-  const allProducts = await listAllService.execute({});
-  
-  const ProductsLength = allProducts.length;
+  const listProducts = await listAllProductsService.execute({});
   
   return response.json({
-    allProducts,
-    ProductsLength
+    listProducts
   })
 });
+
+productsRouter.get('/:productId', async (request, response) => {
+  const { productId } = request.params;
+  
+  const listOneProductService = new ListOneProductService();
+  
+  const listProduct = await listOneProductService.execute({
+    productId
+  });
+
+  return response.json({listProduct});
+})
+
 
 productsRouter.put('/:productId/edit', ensureAuthenticated, async (request, response) => {
   const { name, price, quantity } = request.body;
@@ -59,30 +69,19 @@ productsRouter.put('/:productId/edit', ensureAuthenticated, async (request, resp
 });
 
 productsRouter.delete('/:productId/delete', ensureAuthenticated, async (request, response) => {
-  const {productId} = request.params;
   const userId = request.user.id
+  const {productId} = request.params;
 
-  const userRepository = getRepository(User);
-  const productRepository = getRepository(Product);
+  const deleteProductService = new DeleteProductService();
 
-  const user = await userRepository.findOne(userId);
-  const product = await productRepository.findOne(productId);
-  
-  if(!user) {
-    throw new AppError('Este usuário não existe');
-  }
-
-  if(!product) {
-    throw new AppError('Este Produto não existe');
-  }
-  
-  await productRepository.delete(productId);
+  await deleteProductService.execute({
+    userId,
+    productId
+  });
 
   return response.json({
-    success: "Usuário deletado com sucesso."
+    success: "Produto deletado com sucesso."
   });
 });
-
-
 
 export default productsRouter;
