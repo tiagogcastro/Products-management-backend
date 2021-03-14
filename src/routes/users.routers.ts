@@ -26,7 +26,7 @@ usersRouter.post('/register', async (request, response) => {
   const token = sign({
   }, secret, {
     subject: user.id,
-    expiresIn: '1d',
+    expiresIn: 86400000,
   });
 
   return response.json({
