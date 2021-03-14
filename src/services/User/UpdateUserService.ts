@@ -18,6 +18,10 @@ class UpdateUserService {
       throw new AppError('You need to be logged in to update the user');
     }
 
+    if(email === findUser.email && name === findUser.name) {
+      throw new AppError('Você não mudou nenhuma informação para atualizar seu usuário.')
+    }
+
     const user = await usersRepository.update(id, {
       email,
       name,
