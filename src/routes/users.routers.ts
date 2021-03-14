@@ -1,17 +1,16 @@
 import { Router } from 'express';
 import { sign } from 'jsonwebtoken';
-import { getRepository } from 'typeorm';
 import auth from '../config/auth';
-import AppError from '../errors/AppError';
 import ensureAuthenticated from '../middlewares/ensureAuthenticated';
-import { User } from '../models/User';
 import CreateUserService from '../services/User/CreateUserService';
-import ChangePasswordService from '../services/Login/ChangePasswordService';
+import ChangePasswordService from '../services/Password/ChangePasswordService';
 import UpdateUserService from '../services/User/UpdateUserService';
+import DeleteUserService from '../services/User/DeleteUserService';
+import UserLoggedService from '../services/User/UserLoggedService';
 
 const usersRouter = Router();
 
-usersRouter.post('/create', async (request, response) => {
+usersRouter.post('/register', async (request, response) => {
   const {email, name, password} = request.body;
 
   const createUser = new CreateUserService();
@@ -22,13 +21,12 @@ usersRouter.post('/create', async (request, response) => {
     password,
   });
 
-  const { secret, expiresIn } = auth.jwt;
+  const { secret } = auth.jwt;
 
   const token = sign({
-
   }, secret, {
     subject: user.id,
-    expiresIn,
+    expiresIn: '1d',
   });
 
   return response.json({
@@ -38,15 +36,15 @@ usersRouter.post('/create', async (request, response) => {
 });
 
 usersRouter.get('/', ensureAuthenticated, async (request, response) => {
-  const userRepository = getRepository(User);
+  const id = request.user.id;
 
-  const user = await userRepository.findOne(request.user.id);
+  const userLoggedService = new UserLoggedService();
 
-  if(!user) {
-    throw new AppError('Você não está logado!');
-  }
+  const data = await userLoggedService.execute({
+    id
+  });
 
-  return response.json({ user });
+  return response.json({ data });
 });
 
 usersRouter.put('/edit', ensureAuthenticated, async (request, response) => { 
@@ -68,15 +66,12 @@ usersRouter.put('/edit', ensureAuthenticated, async (request, response) => {
 
 usersRouter.delete('/delete', ensureAuthenticated, async (request, response) => {
   const id = request.user.id
-  const userRepository = getRepository(User);
 
-  const user = await userRepository.findOne(id);
-  
-  if(!user) {
-    throw new AppError('Este usuário não existe');
-  }
-  
-  await userRepository.delete(id);
+  const userDeleteService = new DeleteUserService();
+
+  await userDeleteService.execute({
+    id
+  });
 
   return response.json({
     success: "Usuário deletado com sucesso."
