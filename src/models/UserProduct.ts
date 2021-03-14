@@ -18,7 +18,7 @@ export class UserProduct {
   @Column()
   product_id: string;
 
-  @ManyToOne(() => Product)
+  @OneToOne(() => Product)
   @JoinColumn({name: "product_id"})
   product: Product;
 
