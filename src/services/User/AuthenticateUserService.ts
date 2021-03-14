@@ -24,12 +24,12 @@ class AuthenticateUserService {
     });
 
     if(!user) {
-      throw new AppError('Incorrect email/password combination.', 401);
+      throw new AppError('Esta conta não existe.', 401);
     }
 
     const passwordMatched = compare(String(password), user.password);
 
-    if(!passwordMatched) {
+    if(!passwordMatched || !user.email) {
       throw new AppError('Incorrect email/password combination.', 401);
     }
     
