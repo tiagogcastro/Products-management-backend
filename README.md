@@ -27,9 +27,13 @@
 
 </br>
 
+<<<<<<< HEAD
 <center>
 <img src="./images/insomniaImage.png" width="500px" height="500px" align="center">
 </center>
+=======
+<img src="./images/insomniaImage.png" width="500px" height="500px" align="center">
+>>>>>>> 514ade76e861a14011317daccfe50bb2805fb988
 
 </br>
 
@@ -104,7 +108,7 @@ ___
   <strong>Muito importante:</strong>
   <p>
     Siga esta documentação que criei para você conseguir configurar o docker e dbBevear como eu crio na minha máquina.
-    <a href="https://www.notion.so/Configura-o-b-sica-do-docker-e-dbBeaver-37f5f43b90ab415b912be59ff7dac04d"> Clique aqui! </a>
+    <a href="https://www.notion.so/Configura-o-b-sica-do-docker-e-dbBeaver-3d0807f69f5b44c68810fd9dc3a1844a"> Clique aqui! </a>
 
   </br>
 
