@@ -102,7 +102,7 @@ ___
   <strong>Muito importante:</strong>
   <p>
     Siga esta documentação que criei para você conseguir configurar o docker e dbBevear como eu crio na minha máquina.
-    <a target="_blank" href="https://www.notion.so/Configura-o-b-sica-do-docker-e-dbBeaver-37f5f43b90ab415b912be59ff7dac04d"> Clique aqui! </a>
+    <a target="_blank" href="https://www.notion.so/Configura-o-b-sica-do-docker-e-dbBeaver-3d0807f69f5b44c68810fd9dc3a1844a"> Clique aqui! </a>
 
   </br>
 
