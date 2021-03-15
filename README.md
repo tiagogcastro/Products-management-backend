@@ -1,4 +1,4 @@
-<h1 align="center"> Título </h1>
+<h1 align="center"> Projeto Crud </h1>
 
 <p align="center">🔍 Navegação dentro do Readme. </p>
 
@@ -28,7 +28,7 @@
 </br>
 
 <center>
-  <img src="./images/insomniaImage.png" width="500px" height="500px">
+<img src="./images/insomniaImage.png" width="500px" height="500px" align="center">
 </center>
 
 </br>
@@ -45,6 +45,7 @@ ___
     Utilizei o Typeorm, então da para conectar com diversos bancos de dados.
     </br>
     Utilizei o Docker para ajudar na conexão com o banco de dados PostgresSQL.
+    Utilizei o dbBeaver, para melhor gerenciar o DB escolhido, sem que precise baixar o DB PostgresSQL na máquina.
   </p>
   <div>
     <p>
@@ -58,6 +59,10 @@ ___
     <p>
       ➡
       <a href="https://www.typescriptlang.org"> PostgresSQL</a>
+    </p>
+    <p>
+      ➡
+      <a href="https://dbeaver.io"> dbBeaver </a>
     </p>
     <p>
       ➡
@@ -79,10 +84,10 @@ ___
 ___
 
 <div align="left">
-  <h1 id="rodar-projeto">💻 Como rodar o projeto na sua máquina </h1>
+  <h1 id="rodar-projeto">💻 Como rodar o projeto na sua máquina da forma que rodei na minha</h1>
   <p>➡ Instalar o NodeJS na sua máquina. <p>
-  <p>➡ Se quiser utilizar o Docker e insominia, instale-os também e leia as documentações para entender como funciona o processo, senão, utilize o próprio banco de dados para substituir o <strong>Docker</strong> e para substituir o <strong>insominia</strong>, utilize outro software parecido.</p>
-  <p>➡ Ao instalar tudo necessário, abra uma pasta em seu editor de código e vá no cmd dele(no Vscode o nome é "terminal") ou abra o cmd da sua máquina, digite e execute: </p>
+
+  <p>➡ Vá no cmd dele(no Vscode o nome é "terminal") ou abra o cmd da sua máquina, digite e execute: </p>
   <p> 
 
     git clone https://github.com/Tiaguin061/CRUD-basico
@@ -92,12 +97,24 @@ ___
 
     yarn
   </p>
-  <p>➡ Para ver os comandos disponíveis e dependências instaladas, vá no arquivo package.json. Por fim, para iniciar o servidor, vá em seu editor de código e vá no cmd dele(no Vscode o nome é "terminal") ou abra o cmd da sua máquina, digite e execute: </p>
+  <p>➡ Para ver os comandos disponíveis e dependências instaladas, vá no arquivo package.json. </p>
+  
+  </br>
+
+  <strong>Muito importante:</strong>
+  <p>
+    Siga esta documentação que criei para você conseguir configurar o docker e dbBevear como eu crio na minha máquina.
+    <a href="https://www.notion.so/Configura-o-b-sica-do-docker-e-dbBeaver-37f5f43b90ab415b912be59ff7dac04d"> Clique aqui! </a>
+
+  </br>
+
+  <p> Por fim, para iniciar o servidor, vá em seu editor de código e vá no cmd dele(no Vscode o nome é "terminal") ou abra o cmd da sua máquina, digite e execute: </p>
   <p>
 
     yarn dev:server 
   </p>
   <p>❤ Pronto, seu projeto está certinho para funcionar.</p>
+  <p> Algum erro? Contate-me. </p>
 </div>
 
 </br>
