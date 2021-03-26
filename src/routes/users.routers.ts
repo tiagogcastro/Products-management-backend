@@ -11,7 +11,7 @@ import UserLoggedService from '../services/User/UserLoggedService';
 const usersRouter = Router();
 
 usersRouter.post('/register', async (request, response) => {
-  const {email, name, password} = request.body;
+  const { email, name, password } = request.body;
 
   const createUser = new CreateUserService();
 
@@ -23,32 +23,31 @@ usersRouter.post('/register', async (request, response) => {
 
   const { secret } = auth.jwt;
 
-  const token = sign({
-  }, secret, {
+  const token = sign({}, secret, {
     subject: user.id,
     expiresIn: 86400000,
   });
 
   return response.json({
-    user, 
-    token
+    user,
+    token,
   });
 });
 
 usersRouter.get('/', ensureAuthenticated, async (request, response) => {
-  const id = request.user.id;
+  const { id } = request.user;
 
   const userLoggedService = new UserLoggedService();
 
   const data = await userLoggedService.execute({
-    id
+    id,
   });
 
   return response.json({ data });
 });
 
-usersRouter.put('/edit', ensureAuthenticated, async (request, response) => { 
-  const id = request.user.id;
+usersRouter.put('/edit', ensureAuthenticated, async (request, response) => {
+  const { id } = request.user;
 
   const { email, name } = request.body;
 
@@ -57,26 +56,29 @@ usersRouter.put('/edit', ensureAuthenticated, async (request, response) => {
   const update = await user.execute({
     id,
     email,
-    name
+    name,
   });
-  
+
   return response.json(update);
-
 });
 
-usersRouter.delete('/delete', ensureAuthenticated, async (request, response) => {
-  const id = request.user.id
+usersRouter.delete(
+  '/delete',
+  ensureAuthenticated,
+  async (request, response) => {
+    const { id } = request.user;
 
-  const userDeleteService = new DeleteUserService();
+    const userDeleteService = new DeleteUserService();
 
-  await userDeleteService.execute({
-    id
-  });
+    await userDeleteService.execute({
+      id,
+    });
 
-  return response.json({
-    success: "Usuário deletado com sucesso."
-  });
-});
+    return response.json({
+      success: 'Usuário deletado com sucesso.',
+    });
+  },
+);
 
 // Sem está logado
 // usersRouter.post('/reset-password', async (request, response) => {
@@ -84,22 +86,25 @@ usersRouter.delete('/delete', ensureAuthenticated, async (request, response) => 
 // });
 
 // Logado
-usersRouter.put('/alter-password', ensureAuthenticated, async (request, response) => {
-  const id = request.user.id;
+usersRouter.put(
+  '/alter-password',
+  ensureAuthenticated,
+  async (request, response) => {
+    const { id } = request.user;
 
-  const { password, newPassword, repeatPassword } = request.body;
+    const { password, newPassword, repeatPassword } = request.body;
 
-  const user = new ChangePasswordService();
+    const user = new ChangePasswordService();
 
-  const update = await user.execute({
-    id,
-    password,
-    newPassword,
-    repeatPassword
-  });
-  
-  return response.json(update);
+    const update = await user.execute({
+      id,
+      password,
+      newPassword,
+      repeatPassword,
+    });
 
-});
+    return response.json(update);
+  },
+);
 
 export default usersRouter;
