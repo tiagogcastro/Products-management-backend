@@ -1,19 +1,23 @@
 import { NextFunction, Request, Response } from 'express';
+import { verify } from 'jsonwebtoken';
 import AppError from '../errors/AppError';
 
 import authConfig from '../config/auth';
-import { verify } from 'jsonwebtoken';
 
 interface TokenPayload {
   exp: number;
-  iat: number
+  iat: number;
   sub: string;
 }
 
-export default function ensureAuthenticated(request: Request, response: Response, next: NextFunction): void {
+export default function ensureAuthenticated(
+  request: Request,
+  response: Response,
+  next: NextFunction,
+): void {
   const authHeader = request.headers.authorization;
 
-  if(!authHeader) {
+  if (!authHeader) {
     throw new AppError('JWT token is missing', 401);
   }
 
@@ -26,7 +30,7 @@ export default function ensureAuthenticated(request: Request, response: Response
 
     request.user = {
       id: sub,
-    }
+    };
 
     return next();
   } catch {

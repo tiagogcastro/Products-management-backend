@@ -2,7 +2,7 @@ import { Column, Entity, PrimaryColumn } from 'typeorm';
 import { v4 as uuid } from 'uuid';
 
 @Entity('products')
-export class Product {
+export default class Product {
   @PrimaryColumn()
   readonly id: string;
 
@@ -25,7 +25,7 @@ export class Product {
   updated_at: Date;
 
   constructor() {
-    if(!this.id) {
+    if (!this.id) {
       this.id = uuid();
     }
   }

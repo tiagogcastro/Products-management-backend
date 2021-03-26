@@ -1,7 +1,7 @@
 import { getRepository } from 'typeorm';
 import AppError from '../../errors/AppError';
-import { Product } from '../../models/Product';
-import { User } from '../../models/User';
+import Product from '../../models/Product';
+import User from '../../models/User';
 
 interface Request {
   id: string;
@@ -12,22 +12,28 @@ interface Request {
 }
 
 class UpdateProductService {
-  async execute({id, name, price, quantity, idUser}: Request): Promise<Product | void> {
+  async execute({
+    id,
+    name,
+    price,
+    quantity,
+    idUser,
+  }: Request): Promise<Product | void> {
     const productRepository = getRepository(Product);
     const userRepository = getRepository(User);
 
     const findProduct = await productRepository.findOne(id);
     const userLogged = await userRepository.findOne(idUser);
 
-    if(!userLogged) {
+    if (!userLogged) {
       throw new AppError('You need to be logged in to update the user');
     }
 
-    if(!findProduct?.id) {
+    if (!findProduct?.id) {
       throw new AppError('Este produto não existe.');
     }
-    
-    if(price <= 0 || quantity < 1) {
+
+    if (price <= 0 || quantity < 1) {
       throw new AppError('Por favor, coloque um preço/quantidade válido.');
     }
 
@@ -35,15 +41,15 @@ class UpdateProductService {
       name,
       price,
       quantity,
-      updated_at: new Date()
-    })
-    
-    if(updateProduct.affected === 1) {
+      updated_at: new Date(),
+    });
+
+    if (updateProduct.affected === 1) {
       const productUpdated = await productRepository.findOne(id);
-      return productUpdated
+      return productUpdated;
     }
 
-    throw new AppError('Você não está logado.')
+    throw new AppError('Você não está logado.');
   }
 }
 
