@@ -29,7 +29,7 @@ productsRouter.get('/', async (request, response) => {
 
   const data = await listAllProductsService.execute({});
   
-  return response.json({data})
+  return response.json(data)
 });
 
 productsRouter.get('/:productId', async (request, response) => {
@@ -41,7 +41,7 @@ productsRouter.get('/:productId', async (request, response) => {
     productId
   });
 
-  return response.json({data});
+  return response.json(data);
 })
 
 
