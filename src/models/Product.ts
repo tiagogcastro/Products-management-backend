@@ -1,5 +1,6 @@
-import { Column, Entity, PrimaryColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn } from 'typeorm';
 import { v4 as uuid } from 'uuid';
+import { User } from './User';
 
 @Entity('products')
 export class Product {
@@ -10,7 +11,11 @@ export class Product {
   name: string;
 
   @Column()
-  user_id?: string;
+  user_id: string;
+
+  @ManyToOne(() => User)
+  @JoinColumn({name: "user_id"})
+  user: User;
 
   @Column()
   quantity: number;
