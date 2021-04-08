@@ -4,7 +4,7 @@ import AuthenticateUserService from '../services/User/AuthenticateUserService';
 
 const sessionsRouter = Router();
 
-sessionsRouter.post('/login', async (request, response) => {
+sessionsRouter.post('/', async (request, response) => {
   const { email, password} = request.body;
 
   const authenticateUser = new AuthenticateUserService();
@@ -13,8 +13,6 @@ sessionsRouter.post('/login', async (request, response) => {
     email, 
     password
   });
-
-  delete user.password;
 
   return response.json({ user, token }); 
 });

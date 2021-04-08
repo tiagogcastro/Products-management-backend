@@ -3,6 +3,7 @@ import { Product } from '../../models/Product';
 
 interface Request {
   ProductsLength?: number;
+  id?: string;
 }
 
 interface FormatData {
@@ -11,7 +12,7 @@ interface FormatData {
 }
 
 class ListAllProductsService {
-  async execute({ProductsLength}:Request) : Promise<FormatData> {
+  async execute({ProductsLength, id}:Request) : Promise<FormatData> {
     const productsRepository = getRepository(Product);
   
     const products = await productsRepository.find();

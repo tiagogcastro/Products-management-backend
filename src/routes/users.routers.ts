@@ -10,7 +10,7 @@ import UserLoggedService from '../services/User/UserLoggedService';
 
 const usersRouter = Router();
 
-usersRouter.post('/register', async (request, response) => {
+usersRouter.post('/', async (request, response) => {
   const {email, name, password} = request.body;
 
   const createUser = new CreateUserService();
@@ -44,7 +44,7 @@ usersRouter.get('/', ensureAuthenticated, async (request, response) => {
     id
   });
 
-  return response.json({ data });
+  return response.json(data);
 });
 
 usersRouter.put('/edit', ensureAuthenticated, async (request, response) => { 
