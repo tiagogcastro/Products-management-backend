@@ -27,13 +27,10 @@
 
 </br>
 
-<<<<<<< HEAD
 <center>
 <img src="./images/insomniaImage.png" width="500px" height="500px" align="center">
 </center>
-=======
 <img src="./images/insomniaImage.png" width="500px" height="500px" align="center">
->>>>>>> 514ade76e861a14011317daccfe50bb2805fb988
 
 </br>
 
