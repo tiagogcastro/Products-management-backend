@@ -30,7 +30,6 @@
 <center>
 <img src="./images/insomniaImage.png" width="500px" height="500px" align="center">
 </center>
-<img src="./images/insomniaImage.png" width="500px" height="500px" align="center">
 
 </br>
 
