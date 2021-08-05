@@ -28,7 +28,7 @@
 </br>
 
 <center>
-<img src="./images/insomniaImage.png" width="500px" height="500px" align="center">
+<img src="./images/insomniaImage.png" width="500" height="500" align="center">
 </center>
 
 </br>
@@ -37,14 +37,18 @@ ___
 
 <div align="left"> 
   <h1 id="techs">🚀 Tecnologias Utilizadas </h1> 
+
+  <p> Utilizei o VsCode para fazer os códigos em NodeJS e Typescript.</p>
   <p>
-    Utilizei o VsCode para fazer os códigos em NodeJS e Typescript. 
-    </br>
     O Insominia é para testar a api feita.
-    </br>
+  </p>
+  <p>
     Utilizei o Typeorm, então da para conectar com diversos bancos de dados.
-    </br>
+  </p>
+  </p>
     Utilizei o Docker para ajudar na conexão com o banco de dados PostgresSQL.
+  </p>
+  </p>
     Utilizei o dbBeaver, para melhor gerenciar o DB escolhido, sem que precise baixar o DB PostgresSQL na máquina.
   </p>
   <div>
@@ -90,7 +94,7 @@ ___
   <p>➡ Vá no cmd dele(no Vscode o nome é "terminal") ou abra o cmd da sua máquina, digite e execute: </p>
   <p> 
 
-    git clone https://github.com/Tiaguin061/CRUD-basico
+    git clone https://github.com/Tiaguin061/Products-management-backend
   </p>
   <p>➡ Entre na pasta do projeto(a que acabou de clonar), digite e execute: </p>
   <p>
@@ -152,17 +156,5 @@ ___
   [![](https://img.shields.io/badge/-Linkedin-3DC3C9)](https://www.linkedin.com/in/tiagogoncalves200428/)
   [![](https://img.shields.io/badge/-Instagram-EA3C7A)](https://www.instagram.com/tiaguinho_gon1/?hl=pt-br)
   [![](https://img.shields.io/badge/-Discord-5276f2)](https://discord.com/users/586186122611130368)
-
-</div>
-
-</br>
-
-___
-
-<div align="left">
-  <h1 id="license">✔ Licença</h1>
-  <p>  Este projeto está sobre Licença MIT, veja: 
-
-  [![](https://img.shields.io/badge/-✔Licença-3CEA5A)](https://github.com/Tiaguin061/CRUD-basico/blob/main/LICENSE)
 
 </div>
